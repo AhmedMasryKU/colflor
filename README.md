@@ -1,27 +1,16 @@
-# ColPali: Efficient Document Retrieval with Vision Language Models 👀
-
-[![arXiv](https://img.shields.io/badge/arXiv-2407.01449-b31b1b.svg?style=for-the-badge)](https://arxiv.org/abs/2407.01449)
-[![GitHub](https://img.shields.io/badge/ViDoRe_Benchmark-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/illuin-tech/vidore-benchmark)
-[![Hugging Face](https://img.shields.io/badge/Vidore_Hf_Space-FFD21E?style=for-the-badge&logo=huggingface&logoColor=000)](https://huggingface.co/vidore)
-[![GitHub](https://img.shields.io/badge/Cookbooks-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/tonywu71/colpali-cookbooks)
-
-[![Test](https://github.com/illuin-tech/colpali/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/illuin-tech/colpali/actions/workflows/test.yml)
-[![Version](https://img.shields.io/pypi/v/colpali-engine?color=%2334D058&label=pypi%20package)](https://pypi.org/project/colpali-engine/)
-[![Downloads](https://static.pepy.tech/badge/colpali-engine)](https://pepy.tech/project/colpali-engine)
-
+# ColFlor: Towards BERT-Size Vision-Language Document Retrieval Models
 ---
 
-[[Model card]](https://huggingface.co/vidore/colpali)
-[[ViDoRe Leaderboard]](https://huggingface.co/spaces/vidore/vidore-leaderboard)
-[[Demo]](https://huggingface.co/spaces/manu/ColPali-demo)
-[[Blog Post]](https://huggingface.co/blog/manu/colpali)
+[[Model card]](https://huggingface.co/ahmed-masry/ColFlor)
+[[Demo]](https://huggingface.co/spaces/ahmed-masry/ColFlor-Demo)
+[[Blog Post]](https://huggingface.co/blog/ahmed-masry/colflor)
 
-> [!TIP]
-> For production usage in your RAG pipelines, we recommend using the [`byaldi`](https://github.com/AnswerDotAI/byaldi) package, which is a lightweight wrapper around the `colpali-engine` package developed by the author of the popular [RAGatouille](https://github.com/AnswerDotAI/RAGatouille) repostiory. 🐭
+## Credits. 
+This read me file was adapted from the ColPali original github repo (https://github.com/illuin-tech/colpali)
 
-## Associated Paper
+## Associated BlogPost
 
-This repository contains the code used for training the vision retrievers in the [*ColPali: Efficient Document Retrieval with Vision Language Models*](https://arxiv.org/abs/2407.01449) paper. In particular, it contains the code for training the ColPali model, which is a vision retriever based on the ColBERT architecture and the PaliGemma model.
+This repository contains the code used for training the ColFlor model described in the [*ColFlor: Towards BERT-Size Vision-Language Document Retrieval Models*](https://huggingface.co/blog/ahmed-masry/colflor) blogpost.
 
 ## Introduction
 
@@ -132,28 +121,14 @@ sbatch --nodes=1 --cpus-per-task=16 --mem-per-cpu=32GB --time=20:00:00 --gres=gp
 sbatch --nodes=1  --time=5:00:00 -A cad15443 --gres=gpu:8  --constraint=MI250 --job-name=colpali --wrap="python scripts/train/train_colbert.py scripts/configs/pali/train_colpali_docmatix_hardneg_model.yaml"
 ```
 
-## Paper result reproduction
-
-To reproduce the results from the paper, you should checkout to the `v0.1.1` tag or install the corresponding `colpali-engine` package release using:
-
-```bash
-pip install colpali-engine==0.1.1
-```
-
 ## Citation
-
-**ColPali: Efficient Document Retrieval with Vision Language Models**  
-
-Authors: **Manuel Faysse**\*, **Hugues Sibille**\*, **Tony Wu**\*, Bilel Omrani, Gautier Viaud, Céline Hudelot, Pierre Colombo (\* denotes equal contribution)
-
+If you plan to use ColFlor in your research, please consider citing us as follows:
 ```latex
-@misc{faysse2024colpaliefficientdocumentretrieval,
-      title={ColPali: Efficient Document Retrieval with Vision Language Models}, 
-      author={Manuel Faysse and Hugues Sibille and Tony Wu and Bilel Omrani and Gautier Viaud and Céline Hudelot and Pierre Colombo},
-      year={2024},
-      eprint={2407.01449},
-      archivePrefix={arXiv},
-      primaryClass={cs.IR},
-      url={https://arxiv.org/abs/2407.01449}, 
+@misc{masry2024colflor,
+    title={ColFlor: BERT-Size Vision-Language Document Retrieval Models},
+    url={https://huggingface.co/blog/ahmed-masry/colflor},
+    author={Masry, Ahmed},
+    month={October},
+    year={2024}
 }
 ```
