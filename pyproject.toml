@@ -40,6 +40,8 @@ dependencies = [
     "requests",
     "torch>=2.2.0",
     "transformers>=4.45.0",
+    "timm",
+    "protobuf==5.28.2"
 ]
 
 [project.optional-dependencies]
