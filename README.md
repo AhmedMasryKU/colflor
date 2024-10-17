@@ -5,8 +5,7 @@
 [[Demo]](https://huggingface.co/spaces/ahmed-masry/ColFlor-Demo)
 [[Blog Post]](https://huggingface.co/blog/ahmed-masry/colflor)
 
-## Credits. 
-This read me file (and github repo in general) was adapted from the ColPali original github repo (https://github.com/illuin-tech/colpali)
+
 
 ## Associated BlogPost
 
@@ -14,11 +13,11 @@ This repository contains the code used for training the ColFlor model described 
 
 ## Introduction
 
-With our new model *ColPali*, we propose to leverage VLMs to construct efficient multi-vector embeddings in the visual space for document retrieval. By feeding the ViT output patches from PaliGemma-3B to a linear projection, we create a multi-vector representation of documents. We train the model to maximize the similarity between these document embeddings and the query embeddings, following the ColBERT method.
+In June 2024, ColPali was introduced as an OCR-free document retrieval model, built over PaliGemma, shifting the paradigm of PDF document retrieval by directly processing images instead of using error-prone and resource-heavy OCR pipelines. However, with three billion parameters, ColPali might be computationally expensive, especially for large document databases. In contrast, text retrieval models like ColBERT are more efficient with just a few hundred million parameters, but they require error-prone and expensive OCR pipelines to. To bridge this gap, we introduce ColFlor, an OCR-free visual document retrieval model with only 174 million parameters.
 
-Using ColPali removes the need for potentially complex and brittle layout recognition and OCR pipelines with a single model that can take into account both the textual and visual content (layout, charts, ...) of a document.
+For more information, please refer to our blogpost: [ColFlor Blogpost](https://huggingface.co/blog/ahmed-masry/colflor/)
 
-![ColPali Architecture](assets/colpali_architecture.webp)
+![ColFlor Architecture](assets/colflor.png)
 
 ## Usage
 
@@ -90,6 +89,13 @@ Then, you can start the training process by running this command:
 python scripts/train/train_colbert.py scripts/configs/pali/train_colpali_docmatix_hardneg_model.yaml
 ```
 Make sure to modify the yaml file based on your dataset and training setup!
+
+## Acknowledgement
+This work was carried out at the Intelligent Visualization Lab at York University in Canada. It was supported by the Natural Sciences Engineering Research Council (NSERC) of Canada and Canada Foundation for Innovation (CFI). Additionally, it received support through a GCP credits award from Google's PaliGemma Academic. 
+This readme file (and github repo) was adapted from the ColPali original github repo (https://github.com/illuin-tech/colpali)
+
+## Contact
+If you have any questions about this work, feel free to reach out to Ahmed Masry at masry20@yorku.ca or ahmed.elmasry24653@gmail.com
 
 ## Citation
 If you plan to use ColFlor in your research, please consider citing us as follows:
