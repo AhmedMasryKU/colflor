@@ -1,7 +1,7 @@
 import os
 from typing import List, Tuple, cast
 
-from datasets import Dataset, DatasetDict, concatenate_datasets, load_dataset
+from datasets import Dataset, DatasetDict, concatenate_datasets, load_dataset, load_from_disk
 
 USE_LOCAL_DATASET = os.environ.get("USE_LOCAL_DATASET", "1") == "1"
 
@@ -24,13 +24,13 @@ def load_train_set() -> DatasetDict:
 def load_train_set_detailed() -> DatasetDict:
     ds_paths = [
         "infovqa_train",
-        "docvqa_train",
-        "arxivqa_train",
-        "tatdqa_train",
-        "syntheticDocQA_government_reports_train",
-        "syntheticDocQA_healthcare_industry_train",
-        "syntheticDocQA_artificial_intelligence_train",
-        "syntheticDocQA_energy_train",
+        #"docvqa_train",
+        #"arxivqa_train",
+        #"tatdqa_train",
+        #"syntheticDocQA_government_reports_train",
+        #"syntheticDocQA_healthcare_industry_train",
+        #"syntheticDocQA_artificial_intelligence_train",
+        #"syntheticDocQA_energy_train",
     ]
     base_path = "./data_dir/" if USE_LOCAL_DATASET else "vidore/"
     ds_tot = []
@@ -48,6 +48,12 @@ def load_train_set_detailed() -> DatasetDict:
     dataset_eval = dataset.select(range(500))
     dataset = dataset.select(range(500, len(dataset)))
     ds_dict = DatasetDict({"train": dataset, "test": dataset_eval})
+    return ds_dict
+
+
+def load_train_set_from_local() -> DatasetDict:
+
+    ds_dict = load_from_disk(os.path.join(os.environ['SLURM_TMPDIR'], 'vidore_dataset'))
     return ds_dict
 
 
