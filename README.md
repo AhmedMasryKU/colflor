@@ -6,7 +6,7 @@
 [[Blog Post]](https://huggingface.co/blog/ahmed-masry/colflor)
 
 ## Credits. 
-This read me file was adapted from the ColPali original github repo (https://github.com/illuin-tech/colpali)
+This read me file (and github repo in general) was adapted from the ColPali original github repo (https://github.com/illuin-tech/colpali)
 
 ## Associated BlogPost
 
