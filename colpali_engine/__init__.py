@@ -6,4 +6,6 @@ from .models import (
     ColIdefics2Processor,
     ColPali,
     ColPaliProcessor,
+    ColFlorProcessor,
+    ColFlor
 )
