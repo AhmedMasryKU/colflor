@@ -7,13 +7,13 @@
 
 
 
-## Associated BlogPost
+## BlogPost
 
 This repository contains the code used for training the ColFlor model described in the [*ColFlor: Towards BERT-Size Vision-Language Document Retrieval Models*](https://huggingface.co/blog/ahmed-masry/colflor) blogpost.
 
 ## Introduction
 
-In June 2024, ColPali was introduced as an OCR-free document retrieval model, built over PaliGemma, shifting the paradigm of PDF document retrieval by directly processing images instead of using error-prone and resource-heavy OCR pipelines. However, with three billion parameters, ColPali might be computationally expensive, especially for large document databases. In contrast, text retrieval models like ColBERT are more efficient with just a few hundred million parameters, but they require error-prone and expensive OCR pipelines to. To bridge this gap, we introduce ColFlor, an OCR-free visual document retrieval model with only 174 million parameters.
+In June 2024, [ColPali](https://arxiv.org/abs/2407.01449) was introduced as an OCR-free document retrieval model, built over [PaliGemma](https://arxiv.org/abs/2407.07726), shifting the paradigm of PDF document retrieval by directly processing images instead of using error-prone and resource-heavy OCR pipelines. However, with three billion parameters, ColPali might be computationally expensive, especially for large document databases. In contrast, text retrieval models like [ColBERT](https://arxiv.org/abs/2004.12832) are more efficient with just a few hundred million parameters, but they require error-prone and expensive OCR pipelines to. To bridge this gap, we introduce ColFlor, an OCR-free visual document retrieval model with only 174 million parameters.
 
 For more information, please refer to our blogpost: [ColFlor Blogpost](https://huggingface.co/blog/ahmed-masry/colflor/)
 
