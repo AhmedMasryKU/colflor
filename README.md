@@ -71,23 +71,15 @@ scores = processor.score_multi_vector(query_embeddings, image_embeddings)
 
 ### Benchmarking
 
-To reproduce the results reported in the blogpost, you can simple run the following colab notebook on free T4 gpu! 
+To reproduce the results reported in the blogpost, you can simple run the following colab notebook on a free T4 gpu! 
 [[Colab Evaluation Notebook]](https://colab.research.google.com/drive/1fvLP5WLKssg9yEtkwVdG5yxMBGhrcjGZ?usp=sharing )
 
 The notebook mainly utilizes the evaluation codes from this github repo: [[Vidore Benchmark colflor]](https://github.com/AhmedMasryKU/vidore-benchmark-colflor)
 
 ### Training
 
-First, clone this repo and run the following command to install dependencies: 
-
-```bash
-pip install . -e 
-```
-Then, you can start the training process by running this command: 
-
-```bash
-python scripts/train/train_colbert.py scripts/configs/pali/train_colpali_docmatix_hardneg_model.yaml
-```
+We prepared the following colab notebook for training the model on a free T4 GPU! 
+[Colab Training Notebook](https://colab.research.google.com/drive/10jj_Hd9JjBNnF-fcezbotrn7XEq5DSX2?usp=sharing)
 Make sure to modify the yaml file based on your dataset and training setup!
 
 ## Acknowledgement
