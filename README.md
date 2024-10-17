@@ -20,17 +20,6 @@ Using ColPali removes the need for potentially complex and brittle layout recogn
 
 ![ColPali Architecture](assets/colpali_architecture.webp)
 
-## Setup
-
-We used Python 3.11.6 and PyTorch 2.2.2 to train and test our models, but the codebase is compatible with Python >=3.9 and recent PyTorch versions. To install the package, run:
-
-```bash
-pip install colpali-engine
-```
-
-> [!WARNING]
-> For ColPali versions above v1.0, make sure to install the `colpali-engine` package from source or with a version above v0.2.0.
-
 ## Usage
 
 ### Quick start
@@ -90,7 +79,7 @@ The notebook mainly utilizes the evaluation codes from this github repo: [[Vidor
 
 ### Training
 
-First, clone this repo and use the following command to install dependencies: 
+First, clone this repo and run the following command to install dependencies: 
 
 ```bash
 pip install . -e 
