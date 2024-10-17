@@ -20,15 +20,6 @@ Using ColPali removes the need for potentially complex and brittle layout recogn
 
 ![ColPali Architecture](assets/colpali_architecture.webp)
 
-## List of ColVision models
-
-| Model                                                        | Score on [ViDoRe](https://huggingface.co/spaces/vidore/vidore-leaderboard) 🏆 | License    | Comments                                                     | Currently supported |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ---------- | ------------------------------------------------------------ | ------------------- |
-| [vidore/colpali](https://huggingface.co/vidore/colpali)      | 81.3                                                         | Gemma      | • Based on `google/paligemma-3b-mix-448`.<br />• Checkpoint used in the ColPali paper. | ❌                   |
-| [vidore/colpali-v1.1](https://huggingface.co/vidore/colpali-v1.1) | 81.5                                                         | Gemma      | • Based on `google/paligemma-3b-mix-448`.                    | ✅                   |
-| [vidore/colpali-v1.2](https://huggingface.co/vidore/colpali-v1.2) | 83.1                                                         | Gemma      | • Based on `google/paligemma-3b-mix-448`.                    | ✅                   |
-| [vidore/colqwen2-v0.1](https://huggingface.co/vidore/colqwen2-v0.1) | 86.6                                                         | Apache 2.0 | • Based on `Qwen/Qwen2-VL-2B-Instruct`.<br />• Supports dynamic resolution.<br />• Trained using 768 image patches per page. | ✅                   |
-
 ## Setup
 
 We used Python 3.11.6 and PyTorch 2.2.2 to train and test our models, but the codebase is compatible with Python >=3.9 and recent PyTorch versions. To install the package, run:
@@ -44,18 +35,25 @@ pip install colpali-engine
 
 ### Quick start
 
+First, clone this github repo and install dependencies using the following command: 
+
+```bash
+pip install -e .
+```
+
+Afetr that, you can run the code below for inference. 
+
 ```python
 import torch
 from PIL import Image
 
-from colpali_engine.models import ColPali, ColPaliProcessor
+from colpali_engine.models import ColFlor, ColFlorProcessor
 
-model_name = "vidore/colpali-v1.2"
+model_name = "ahmed-masry/ColFlor"
 
-model = ColPali.from_pretrained(
+model = ColFlor.from_pretrained(
     model_name,
-    torch_dtype=torch.bfloat16,
-    device_map="cuda:0",  # or "mps" if on Apple Silicon
+    device_map="cuda", 
 ).eval()
 
 processor = ColPaliProcessor.from_pretrained(model_name)
@@ -83,43 +81,26 @@ scores = processor.score_multi_vector(query_embeddings, image_embeddings)
 
 ```
 
-### Inference
-
-You can find an example [here](https://github.com/illuin-tech/colpali/blob/main/scripts/infer/run_inference_with_python.py). If you need an indexing system, we recommend using [`byaldi`](https://github.com/AnswerDotAI/byaldi) - [RAGatouille](https://github.com/AnswerDotAI/RAGatouille)'s little sister 🐭 - which share a similar API and leverages our `colpali-engine` package.
-
 ### Benchmarking
 
-To benchmark ColPali to reproduce the results on the [ViDoRe leaderboard](https://huggingface.co/spaces/vidore/vidore-leaderboard), it is recommended to use the [`vidore-benchmark`](https://github.com/illuin-tech/vidore-benchmark) package.
+To reproduce the results reported in the blogpost, you can simple run the following colab notebook on free T4 gpu! 
+[[Colab Evaluation Notebook]](https://colab.research.google.com/drive/1fvLP5WLKssg9yEtkwVdG5yxMBGhrcjGZ?usp=sharing )
+
+The notebook mainly utilizes the evaluation codes from this github repo: [[Vidore Benchmark colflor]](https://github.com/AhmedMasryKU/vidore-benchmark-colflor)
 
 ### Training
 
-To keep a lightweight repository, only the essential packages were installed. In particular, you must specify the dependencies to use the training script for ColPali. You can do this using the following command:
+First, clone this repo and use the following command to install dependencies: 
 
 ```bash
-pip install "colpali-engine[train]"
+pip install . -e 
 ```
-
-All the model configs used can be found in `scripts/configs/` and rely on the [configue](https://github.com/illuin-tech/configue) package for straightforward configuration. They should be used with the `train_colbert.py` script.
-
-#### Example 1: Local training
+Then, you can start the training process by running this command: 
 
 ```bash
-USE_LOCAL_DATASET=0 python scripts/train/train_colbert.py scripts/configs/pali/train_colpali_docmatix_hardneg_model.yaml
+python scripts/train/train_colbert.py scripts/configs/pali/train_colpali_docmatix_hardneg_model.yaml
 ```
-
-or using `accelerate`:
-
-```bash
-accelerate launch scripts/train/train_colbert.py scripts/configs/pali/train_colpali_docmatix_hardneg_model.yaml
-```
-
-#### Example 2: Training on a SLURM cluster
-
-```bash
-sbatch --nodes=1 --cpus-per-task=16 --mem-per-cpu=32GB --time=20:00:00 --gres=gpu:1  -p gpua100 --job-name=colidefics --output=colidefics.out --error=colidefics.err --wrap="accelerate launch scripts/train/train_colbert.py scripts/configs/pali/train_colpali_docmatix_hardneg_model.yaml"
-
-sbatch --nodes=1  --time=5:00:00 -A cad15443 --gres=gpu:8  --constraint=MI250 --job-name=colpali --wrap="python scripts/train/train_colbert.py scripts/configs/pali/train_colpali_docmatix_hardneg_model.yaml"
-```
+Make sure to modify the yaml file based on your dataset and training setup!
 
 ## Citation
 If you plan to use ColFlor in your research, please consider citing us as follows:
