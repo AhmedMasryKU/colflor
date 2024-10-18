@@ -17,7 +17,7 @@ In June 2024, [ColPali](https://arxiv.org/abs/2407.01449) was introduced as an O
 
 For more information, please refer to our blogpost: [ColFlor Blogpost](https://huggingface.co/blog/ahmed-masry/colflor/)
 
-![ColFlor Architecture](assets/colflor.png)
+![ColFlor Architecture](assets/colflor_n32.png)
 
 ## Usage
 
