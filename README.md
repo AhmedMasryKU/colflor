@@ -44,7 +44,7 @@ model = ColFlor.from_pretrained(
     device_map="cuda", 
 ).eval()
 
-processor = ColPaliProcessor.from_pretrained(model_name)
+processor = ColFlorProcessor.from_pretrained(model_name)
 
 # Your inputs
 images = [
